@@ -198,17 +198,12 @@ class Sudoku(BoxLayout):
                 for value in self.useable_values:
                     if self.value_check(row, col, value, self.original_board):
                         self.original_board[row][col] = value
-                        print("row col:",row,col,value)
-#                        for j in range(9):
-#                            print(self.original_board[j][0],self.original_board[j][1],self.original_board[j][2],self.original_board[j][3], self.original_board[j][4],self.original_board[j][5], self.original_board[j][6],self.original_board[j][7], self.original_board[j][8])
                         if self.is_full(self.original_board):
                             return True
-#                        else:
-#                            print("Recursieve aanroep")
-#                            if self.original_board_init():
-#                                return True 
-        
-    
+                if self.original_board[row][col] == 0:
+                    self.original_board[row][col] = ""
+
+
     def player_board_init(self, to_del):
         self.player_board = copy.deepcopy(self.original_board)
         to_remove = random.sample(range(81), to_del)
@@ -217,9 +212,6 @@ class Sudoku(BoxLayout):
             row = int(i/9)
             col = i%9  
             self.player_board[row][col] = ""
-                        
-        if self.player_board[8][8] == 0:
-            self.player_board[8][8] = ""
     
         self.print_board(self.player_board)
         
