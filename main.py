@@ -190,6 +190,7 @@ class Sudoku(BoxLayout):
     
     
     def original_board_init(self):
+        count = 0
         for i in range(81):
             row = int(i/9)
             col = i%9        
@@ -199,9 +200,12 @@ class Sudoku(BoxLayout):
                     if self.value_check(row, col, value, self.original_board):
                         self.original_board[row][col] = value
                         if self.is_full(self.original_board):
+                            print("Count1: ",count)
                             return True
                 if self.original_board[row][col] == 0:
                     self.original_board[row][col] = ""
+                    count =+ 1
+        print("Count2: ",count)
 
 
     def player_board_init(self, to_del):
